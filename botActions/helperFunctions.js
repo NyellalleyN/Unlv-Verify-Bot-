@@ -11,7 +11,7 @@ function genVerificationCode(n) {
 async function sendVerifyMessage(interaction, mailSender) {
   //let regex = new RegExp("[a-z0-9]+@unlv.nevada.edu");
   let email = interaction.options.getString("email");
-  var checkEmail = await database.checkExists("student_email", email);
+  var checkEmail = await database.checkExists("student_email", email, "Students");
   //Check DB for EMail
   if (checkEmail) {
     //Fetch User
