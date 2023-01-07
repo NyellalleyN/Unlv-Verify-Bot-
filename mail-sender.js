@@ -1,20 +1,23 @@
 const nodemailer = require("nodemailer");
-const { serverEmail, serverPassword } = require("./config.json");
+const {
+  smtpHost,
+  emailPort,
+} = require("./config.json");
 
 module.exports = class MailSender {
   constructor() {
     this.transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: serverEmail,
-        pass: serverPassword,
+      host: smtpHost,
+      port: emailPort,
+      tls: {
+        rejectUnauthorized: false,
       },
     });
   }
 
   async sendEmail(userEmail, code) {
     const mailOptions = {
-      from: serverEmail,
+      from: "UNLVAuth"+ "@" + smtpHost,
       to: userEmail,
       subject: "UNLV Email Verification Code",
       text: "Your email verification code is:" + code,

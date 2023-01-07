@@ -15,13 +15,12 @@ npm install
 **Settings: Config.json File**
 ```
 {
-    "token": 
-    "clientId": 
-    "guildId": 
-    "serverEmail": 
-    "serverPassword": 
-    "smtpHost": 
-}
+    "token": "",
+    "clientId": "",
+    "guildId": "",
+    "emailPort": "",
+    "smtpHost": ""
+  }
 ```
 
 # Start Bot
