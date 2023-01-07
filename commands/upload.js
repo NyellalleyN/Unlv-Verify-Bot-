@@ -14,7 +14,7 @@ module.exports = {
         .setDescription("Student names and emails")
         .setRequired(true)
     )
-    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
   async execute(interaction) {
     var data = interaction.options.getAttachment("file");
