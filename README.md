@@ -78,7 +78,7 @@ Student Name,Student ID,Student SIS ID,Email,Section Name
 | Systems Programming     | 2228-CS-218-SEC1003-906978   |
 ### Students
 | name      | discord_id |student_email(PK)| code | verified|
-| ----------- | ----------- | -----------|----------- | |
+| ----------- | ----------- | -----------|----------- | ----------- |
 | John Smith   | 123456768       | test@unlv.nevada.edu | 123456 | 0  |
 
 ### Enrollment
