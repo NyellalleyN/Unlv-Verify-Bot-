@@ -131,6 +131,29 @@ Database Functions
     });
   }
 
+  delFromEnroll(studentEmail, classID) {
+    return new Promise((resolve, reject) => {
+      let sql =
+        `DELETE FROM ENROLLMENT
+        WHERE student_email = ? 
+        AND class_id = ? 
+        ` 
+        console.log(studentEmail)
+        console.log(classID)
+
+      let params = [studentEmail, classID];
+      this.db.run(sql, params, (err, res) => {
+        if (err) {
+          console.error("DB Error: Fetch failed: ", err.message);
+          reject(err.message);
+        } else {
+          console.log(this.changes);
+          resolve(res ? res[condition] : null);
+        }
+      });
+    });
+  }
+
   getUser(condition, value) {
     return new Promise((resolve, reject) => {
       let sql = "SELECT * FROM Students WHERE " + condition + " = ? ";
