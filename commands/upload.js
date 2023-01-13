@@ -17,12 +17,11 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
 
   async execute(interaction) {
-
-    let botResponse = ""
+    let botResponse = "";
 
     if (
       interaction.member.roles.cache.some((role) => role.name === "Instructor")
-    )  {
+    ) {
       var data = interaction.options.getAttachment("file");
       //Format Input
       var index = 0;
@@ -45,8 +44,7 @@ module.exports = {
       else if (classNumber[2] == "218") className = "Systems Programming";
       else if (classNumber[2] == "135") className = "Computer Science I";
       else if (classNumber[2] == "202") className = "Computer Science II";
-      else if (classNumber[2] == "326")
-        className = "Programming Concepts and Languages";
+      else if (classNumber[2] == "326") className = "Prog Concepts";
       else className = "Other";
 
       // Add Class to DB
@@ -59,10 +57,18 @@ module.exports = {
       //If Added Create Discord Role
       if (!boolClassAdd) {
         database.addClass(className, dbClassID);
-        await interaction.guild.roles.create({
-          name: dbClassID,
-          color: "Green",
-        });
+
+        // Check Discord for Existing Role
+        let classRole = interaction.guild.roles.cache.find(
+          (role) => role.name === dbClassID
+        );
+
+        if (!dbClassID) {
+          await interaction.guild.roles.create({
+            name: dbClassID,
+            color: "Green",
+          });
+        } else console.log("Class role already exists in discord!");
       } else console.log("Class " + classNumber + " already exists");
 
       // Add Student/Enrollments to DB
@@ -72,10 +78,8 @@ module.exports = {
         database.addEnrollment(student[3], student[4]);
         index++;
       }
-      botResponse = "Students have been added to the database"
-    }
-    else 
-      botResponse = "You do not have permissions to use this command."
+      botResponse = "Students have been added to the database";
+    } else botResponse = "You do not have permissions to use this command.";
 
     await interaction.reply({
       content: botResponse,
