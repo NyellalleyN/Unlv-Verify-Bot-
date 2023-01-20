@@ -57,18 +57,14 @@ module.exports = {
       //If Added Create Discord Role
       if (!boolClassAdd) {
         database.addClass(className, dbClassID);
-
         // Check Discord for Existing Role
         let classRole = interaction.guild.roles.cache.find(
           (role) => role.name === dbClassID
         );
-
-        if (!dbClassID) {
           await interaction.guild.roles.create({
             name: dbClassID,
             color: "Green",
           });
-        } else console.log("Class role already exists in discord!");
       } else console.log("Class " + classNumber + " already exists");
 
       // Add Student/Enrollments to DB
